@@ -6,6 +6,9 @@ import config from "@/config";
 import { CircleGeometry, MeshBasicMaterial, Mesh } from "three";
 
 const acc = 10;
+
+const fromX = 0.5;
+const toX = fromX * 3;
 class Ball {
   constructor() {
     const geometry = new CircleGeometry(0.3, 32);
@@ -22,18 +25,29 @@ class Ball {
     this.offset = offset;
   }
   update(t) {
-    const from = new Vector3(1, 0, 0);
-    const to = new Vector3(2, 0, 0);
+    const from = new Vector3(fromX, 0, 0);
+    const to = new Vector3(toX, 0, 0);
     if (this.offset % 2 === 0) {
       from.x *= -1;
       to.x *= -1;
     }
     if (this.height % 2 === 1) to.x *= -1;
-    const flight = this.height * config.unitTime;
-    this.position.y = -acc * t * (t - flight);
+    const allTime = this.height * config.unitTime;
+    const grabTime = 0.1;
+    const flightTime = allTime - grabTime;
 
-    const ut = t / flight;
-    this.position.x = from.x * (1 - ut) + to.x * ut;
+    const ut = t / flightTime;
+    if (t < flightTime) {
+      this.position.y = -acc * t * (t - flightTime);
+      this.position.x = from.x * (1 - ut) + to.x * ut;
+    } else {
+      const gt = (t - flightTime) / grabTime;
+      const c = (to.x + (to.x * fromX) / toX) / 2;
+      const r = (to.x - (to.x * fromX) / toX) / 2;
+
+      this.position.y = -Math.abs(r) * Math.sin(gt * Math.PI);
+      this.position.x = c + r * Math.cos(gt * Math.PI);
+    }
 
     this.circle.position.x = this.position.x;
     this.circle.position.y = this.position.y;
@@ -48,8 +62,9 @@ export function throwBall(elapsed, heightNum) {
   ball.setHeight(heightNum, elapsed);
 
   const update = time => {
-    ball.update(time - elapsed * config.unitTime);
-    if (ball.circle.position.y < 0) {
+    const ballTime = time - elapsed * config.unitTime;
+    ball.update(ballTime);
+    if (ballTime > ball.height * config.unitTime) {
       ball.remove();
       emitter.off("animate", update);
     }
