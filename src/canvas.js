@@ -1,7 +1,8 @@
 import emitter from "@/event";
 import { WebGLRenderer, Scene, OrthographicCamera, AxesHelper } from "three";
-import { unitTime } from "@/config";
+import config from "@/config";
 
+import { throwBall } from "@/ball";
 const camera = new OrthographicCamera(-10, 10, 10, -10);
 const renderer = new WebGLRenderer();
 export const scene = new Scene();
@@ -22,21 +23,20 @@ export const init = () => {
   update();
 };
 
-let lastThrowed = 0;
 let start = new Date();
 function update() {
   requestAnimationFrame(update);
   let t = (new Date() - start) / 1000;
   animate(t);
 }
+
 function animate(t) {
   emitter.emit("animate", t);
 
-  if ((lastThrowed + 1) * unitTime < t) {
-    lastThrowed++;
-    let heightNum = 1 + Math.floor(Math.random() * 10);
-    console.log(heightNum);
-    emitter.emit("throwBall", { elapsed: lastThrowed, heightNum });
+  if (config.nextThrowTime < t) {
+    config.elapsed++;
+
+    throwBall({ elapsed: config.elapsed, heightNum: config.currentHeight });
   }
 
   renderer.render(scene, camera);
