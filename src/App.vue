@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <my-canvas/>
-      <input type="number" v-model="number" style="z-index:2"/>
+    <my-canvas style="z-index: -1"/>
+      <input type="number" v-model="number" />
+      <p>
       {{number}}
+      </p>
   </div>
 </template>
 
@@ -34,12 +36,11 @@ export default {
 
 <style>
 #app {
-  color: #2c3e50;
   margin-top: 60px;
+  z-index: 10;
+  color: white;
 }
 input {
   background: white;
-  position: fixed;
-  z-index: 10;
 }
 </style>

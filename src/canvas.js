@@ -18,7 +18,7 @@ export const init = () => {
   container.appendChild(renderer.domElement);
 
   scene.add(axis);
-  camera.position.set(0, 8, 100);
+  camera.position.set(0, 6, 100);
 
   update();
 };
