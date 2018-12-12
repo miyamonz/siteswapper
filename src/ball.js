@@ -1,5 +1,4 @@
 import { Vector3 } from "three";
-import { scene } from "@/canvas";
 import emitter from "@/event";
 import config from "@/config";
 
@@ -10,7 +9,7 @@ const acc = 10;
 const fromX = 0.5;
 const toX = fromX * 3;
 class Ball {
-  constructor() {
+  constructor(scene) {
     const geometry = new CircleGeometry(0.3, 32);
     const material = new MeshBasicMaterial({ color: 0xffff00 });
     const circle = new Mesh(geometry, material);
@@ -53,12 +52,13 @@ class Ball {
     this.circle.position.y = this.position.y;
   }
   remove() {
-    scene.remove(this.circle);
+    const { parent } = this.circle;
+    if (parent) parent.remove(this.circle);
   }
 }
 
-export function throwBall(elapsed, heightNum) {
-  let ball = new Ball();
+export function throwBall(scene, elapsed, heightNum) {
+  let ball = new Ball(scene);
   ball.setHeight(heightNum, elapsed);
 
   const update = time => {

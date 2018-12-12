@@ -56,7 +56,7 @@ function animate(t) {
   if (config.nextThrowTime < t) {
     config.elapsed++;
 
-    throwBall(config.elapsed, config.currentHeight);
+    throwBall(scene, config.elapsed, config.currentHeight);
   }
 
   renderer.render(scene, camera);
