@@ -1,8 +1,6 @@
-import { Vector3 } from "three";
+import { CircleGeometry, MeshBasicMaterial, Mesh, Vector3 } from "three";
 import emitter from "@/event";
 import config from "@/config";
-
-import { CircleGeometry, MeshBasicMaterial, Mesh } from "three";
 
 const acc = 10;
 
