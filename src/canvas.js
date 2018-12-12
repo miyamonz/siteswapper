@@ -2,7 +2,7 @@ import emitter from "@/event";
 import { WebGLRenderer, Scene, OrthographicCamera, AxesHelper } from "three";
 import config from "@/config";
 
-import { throwBall } from "@/ball";
+import { throwBall } from "@/Ball";
 import { debounceResize } from "@/util";
 
 const camera = new OrthographicCamera(-10, 10, 10, -10);
