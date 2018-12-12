@@ -10,11 +10,24 @@ const renderer = new WebGLRenderer();
 export const scene = new Scene();
 const axis = new AxesHelper(100);
 
+const getTopWhenOthersAreSpecific = (aspect, { left, right, bottom }) => {
+  const width = right - left;
+  const newHeight = width / aspect;
+  return bottom + newHeight;
+};
+
 const setSameRatioAsDOMToRenderer = () => {
   const container = document.querySelector("#container");
   const { clientWidth: width, clientHeight: height } = container;
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
+
+  //set aspect on camera
+  //これは左右と加減をfixして計算しているが、
+  //理想をいえば入力されたsitesapの最大の高さを収めるように表示すべき
+  const aspect = width / height;
+  camera.top = getTopWhenOthersAreSpecific(aspect, camera);
+  camera.updateProjectionMatrix();
 };
 
 export const init = () => {
