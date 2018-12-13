@@ -18,11 +18,14 @@ const createLine = height => {
   return new Line(geometry, material);
 };
 
+const numToSiteswapChar = num =>
+  num < 10 ? num.toString() : String.fromCharCode(87 + num);
 const createGridLine = num => {
   const height = getHeightFromSiteswapNum(num, config.acceleration);
   const group = new Group();
   const line = createLine();
-  const label = createLabel(num);
+  const char = numToSiteswapChar(num);
+  const label = createLabel(char);
   group.add(line);
   group.add(label);
   group.position.y = height;
