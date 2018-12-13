@@ -32,6 +32,10 @@ export default {
   z-index: 10;
   color: white;
 }
+#app,
+#app * {
+  font-size: 30px;
+}
 input {
   background: white;
 }
