@@ -1,4 +1,14 @@
-import { Scene, OrthographicCamera, AxesHelper, Group } from "three";
+import {
+  Scene,
+  OrthographicCamera,
+  AxesHelper,
+  Group,
+  LineBasicMaterial,
+  Geometry,
+  Line,
+  Vector3
+} from "three";
+import { getHeightFromSiteswapNum } from "@/util";
 export const scene = new Scene();
 export const camera = new OrthographicCamera(-10, 10, 10, -10);
 export const axis = new AxesHelper(100);
@@ -17,3 +27,19 @@ export const resizeCamera = (aspect, camera) => {
   camera.top = getTopWhenOthersAreSpecific(aspect, camera);
   camera.updateProjectionMatrix();
 };
+
+export const grids = new Group();
+
+const createLine = height => {
+  const material = new LineBasicMaterial({ color: 0x0000ff });
+  const geometry = new Geometry();
+  geometry.vertices.push(
+    new Vector3(-10, height, 0),
+    new Vector3(10, height, 0)
+  );
+  return new Line(geometry, material);
+};
+for (let i = 3; i < 10; i++) {
+  const line = createLine(getHeightFromSiteswapNum(i));
+  scene.add(line);
+}
