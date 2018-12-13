@@ -1,5 +1,5 @@
 import { OrthographicCamera } from "three";
-export const camera = new OrthographicCamera(-10, 10, 10, -7);
+export const camera = new OrthographicCamera(-10, 10, 10, -8)
 const getTopWhenOthersAreSpecific = (aspect, { left, right, bottom }) => {
   const width = right - left;
   const newHeight = width / aspect;
