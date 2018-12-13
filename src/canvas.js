@@ -4,8 +4,9 @@ import onAnimate from "./onAnimate";
 
 import createScene, { camera, resizeCamera } from "@/objects/index.js";
 
-const renderer = new WebGLRenderer();
+const renderer = new WebGLRenderer({ antialias: true, alpha: true });
 
+renderer.setClearColor(0x000000, 0.0);
 const setSameRatioAsDOMToRenderer = () => {
   const container = document.querySelector("#container");
   const { clientWidth: width, clientHeight: height } = container;

@@ -4,7 +4,7 @@ import createLine, { setHeightToLine } from "./createLine";
 import config from "@/config";
 
 export const scene = new Scene();
-export const camera = new OrthographicCamera(-10, 10, 10, -10);
+export const camera = new OrthographicCamera(-10, 10, 10, -7);
 export const axis = new AxesHelper(100);
 export const balls = new Group();
 

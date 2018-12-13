@@ -6,7 +6,7 @@
       <br>
       siteswap: <input v-model="config.siteswapStr" />
       <br>
-      grabity: <input type="number" v-model="config.acceleration" />
+      grabity: <input type="range" v-model="config.acceleration" />
   </div>
 </template>
 
@@ -28,15 +28,21 @@ export default {
 
 <style>
 #app {
-  margin-top: 60px;
   z-index: 10;
-  color: white;
 }
 #app,
 #app * {
-  font-size: 30px;
+  font-size: 20px;
 }
 input {
   background: white;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+
+  /* background: linear-gradient(to bottom, #11e8bb 0%, #8200c9 100%); */
+  background: radial-gradient(#eeeeee 0%, #cccccc 100%);
 }
 </style>
