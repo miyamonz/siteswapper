@@ -8,7 +8,7 @@ export const axis = new AxesHelper(100);
 export const balls = new Group();
 export const grids = new Group();
 
-for (let i = 3; i < 20; i++) {
+for (let i = 3; i < 15; i++) {
   const grid = createGrid(i);
 
   //when config.acceleration is updated, change grid line height
