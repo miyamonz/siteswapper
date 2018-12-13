@@ -25,6 +25,7 @@ export default new Vue({
   },
   data() {
     return {
+      acceleration: 20,
       elapsed: 0,
       unitTime: 0.25,
       siteswapStr: "441"

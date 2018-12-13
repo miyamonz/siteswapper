@@ -19,12 +19,10 @@ export const startAnimationLoop = fn => {
   fn(t);
 };
 
-export const getHeightFromSiteswapNum = (num, acc = 10 * 2) => {
+export const getHeightFromSiteswapNum = (num, acc) => {
   const unitTime = 0.25;
   const grabTime = 0.1;
   const duration = unitTime * num - grabTime;
-  //accに注意
-  //Ball/funcs.jsのaccは式の1/2を含んでいる
   const height = (acc * duration ** 2) / 8;
   return height;
 };

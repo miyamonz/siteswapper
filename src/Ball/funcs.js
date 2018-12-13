@@ -1,6 +1,5 @@
 import { Vector3 } from "three";
-
-const acc = 10;
+import config from "@/config";
 
 const fromX = 0.5;
 const toX = fromX * 3;
@@ -22,7 +21,7 @@ export const getBallPosition = ({ from, to, current, time }) => {
 
   const ut = current / flightTime;
   if (current < flightTime) {
-    const y = -acc * current * (current - flightTime);
+    const y = -0.5 * config.acceleration * current * (current - flightTime);
     const x = from.x * (1 - ut) + to.x * ut;
     return { x, y };
   }

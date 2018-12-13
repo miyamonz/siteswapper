@@ -5,6 +5,7 @@
       <p>
       {{config.siteswapStr}}
       </p>
+      <input type="number" v-model="config.acceleration" />
   </div>
 </template>
 
