@@ -10,3 +10,11 @@ export const debounceResize = fn => {
     });
   });
 };
+
+//msec
+let start = Date.now();
+export const startAnimationLoop = fn => {
+  requestAnimationFrame(() => startAnimationLoop(fn));
+  let t = (Date.now() - start) / 1000;
+  fn(t);
+};

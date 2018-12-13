@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <my-canvas style="z-index: -1"/>
-      <input type="number" v-model="number" />
+      <input v-model="config.siteswapStr" />
       <p>
-      {{number}}
+      {{config.siteswapStr}}
       </p>
   </div>
 </template>
@@ -17,19 +17,9 @@ export default {
   components: {
     MyCanvas
   },
-  computed: {
-    number: {
-      get: function() {
-        return config.siteswapNum;
-      },
-      set: function(n) {
-        console.log(n);
-        config.siteswapNum = n;
-      }
-    }
-  },
+  computed: {},
   data() {
-    return {};
+    return { config };
   }
 };
 </script>
