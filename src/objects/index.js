@@ -9,8 +9,7 @@ export const balls = new Group();
 export const grids = new Group();
 
 for (let i = 3; i < 20; i++) {
-  const height = getHeightFromSiteswapNum(i, config.acceleration);
-  const grid = createGrid(height);
+  const grid = createGrid(i);
 
   //when config.acceleration is updated, change grid line height
   config.$watch("acceleration", acc => {
