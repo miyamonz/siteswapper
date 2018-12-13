@@ -1,6 +1,6 @@
 import { Scene, OrthographicCamera, AxesHelper, Group } from "three";
 import { getHeightFromSiteswapNum } from "@/util";
-import createLine from "./createLine";
+import createLine, { setHeightToLine } from "./createLine";
 import config from "@/config";
 
 export const scene = new Scene();
@@ -31,10 +31,7 @@ for (let i = 3; i < 10; i++) {
   //when config.acceleration is updated, change grid line height
   config.$watch("acceleration", acc => {
     const newHeight = getHeightFromSiteswapNum(i, acc);
-    const { vertices } = line.geometry;
-    vertices[0].y = newHeight;
-    vertices[1].y = newHeight;
-    line.geometry.verticesNeedUpdate = true;
+    setHeightToLine(line, newHeight);
   });
   grids.add(line);
 }
