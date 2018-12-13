@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <my-canvas style="z-index: -1"/>
-      <input type="number" v-model="number" />
-      <p>
-      {{number}}
-      </p>
+      <span v-if="config.isValid"></span>
+      <span v-else>invalid siteswap</span>
+      <br>
+      siteswap: <input v-model="config.siteswapStr" />
+      <br>
+      grabity: <input type="range" v-model="config.acceleration" />
   </div>
 </template>
 
@@ -17,30 +19,30 @@ export default {
   components: {
     MyCanvas
   },
-  computed: {
-    number: {
-      get: function() {
-        return config.siteswapNum;
-      },
-      set: function(n) {
-        console.log(n);
-        config.siteswapNum = n;
-      }
-    }
-  },
+  computed: {},
   data() {
-    return {};
+    return { config };
   }
 };
 </script>
 
 <style>
 #app {
-  margin-top: 60px;
   z-index: 10;
-  color: white;
+}
+#app,
+#app * {
+  font-size: 20px;
 }
 input {
   background: white;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+
+  /* background: linear-gradient(to bottom, #11e8bb 0%, #8200c9 100%); */
+  background: radial-gradient(#eeeeee 0%, #cccccc 100%);
 }
 </style>

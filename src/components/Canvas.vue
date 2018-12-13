@@ -5,7 +5,6 @@
 <script>
 import paper from "paper";
 import { init } from "@/canvas";
-import { throwBall } from "@/ball";
 export default {
   mounted() {
     init();
