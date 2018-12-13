@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <my-canvas style="z-index: -1"/>
-      <input v-model="config.siteswapStr" />
-      <p>
-      {{config.siteswapStr}}
-      </p>
-      <input type="number" v-model="config.acceleration" />
+      <span v-if="config.isValid"></span>
+      <span v-else>invalid siteswap</span>
+      <br>
+      siteswap: <input v-model="config.siteswapStr" />
+      <br>
+      grabity: <input type="number" v-model="config.acceleration" />
   </div>
 </template>
 

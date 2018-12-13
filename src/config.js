@@ -1,4 +1,5 @@
 import Vue from "vue";
+import isValid from "@/siteswap";
 
 const siteswapNotationToNumArray = str => {
   return str.split("").map(w => {
@@ -17,6 +18,9 @@ export default new Vue({
     },
     heightNums() {
       return siteswapNotationToNumArray(this.siteswapStr);
+    },
+    isValid() {
+      return isValid(this.heightNums);
     },
     currentHeight() {
       const offset = this.elapsed % this.heightNums.length;
