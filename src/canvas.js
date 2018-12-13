@@ -2,18 +2,19 @@ import { WebGLRenderer } from "three";
 import { debounceResize, startAnimationLoop } from "@/util";
 import onAnimate from "./onAnimate";
 
-import createScene, { camera, resizeCamera } from "@/objects/index.js";
+import createScene from "@/objects/index.js";
+import { camera, resizeCamera } from "@/objects/camera.js";
 
 const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-
 renderer.setClearColor(0x000000, 0.0);
+
 const setSameRatioAsDOMToRenderer = () => {
   const container = document.querySelector("#container");
   const { clientWidth: width, clientHeight: height } = container;
   renderer.setPixelRatio(window.devicePixelRatio);
   //高解像度のときに重くなりそう
   renderer.setSize(width, height);
-  resizeCamera(width / height, camera);
+  resizeCamera(width / height);
 };
 
 export const init = () => {
