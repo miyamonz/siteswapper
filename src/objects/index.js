@@ -1,6 +1,6 @@
 import { Scene, OrthographicCamera, AxesHelper, Group } from "three";
 import { getHeightFromSiteswapNum } from "@/util";
-import createLine, { setHeightToLine } from "./createLine";
+import createGrid from "./createGrid";
 import config from "@/config";
 
 export const scene = new Scene();
@@ -24,16 +24,16 @@ export const resizeCamera = (aspect, camera) => {
 
 export const grids = new Group();
 
-for (let i = 3; i < 10; i++) {
+for (let i = 3; i < 20; i++) {
   const height = getHeightFromSiteswapNum(i, config.acceleration);
-  const line = createLine(height);
+  const grid = createGrid(height);
 
   //when config.acceleration is updated, change grid line height
   config.$watch("acceleration", acc => {
     const newHeight = getHeightFromSiteswapNum(i, acc);
-    setHeightToLine(line, newHeight);
+    grid.position.y = newHeight;
   });
-  grids.add(line);
+  grids.add(grid);
 }
 
 export default function createScene() {
