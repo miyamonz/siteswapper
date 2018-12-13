@@ -2,7 +2,7 @@ import emitter from "@/event";
 import { WebGLRenderer } from "three";
 import config from "@/config";
 
-import { throwBall } from "@/Ball";
+import { throwBall } from "@/Ball/index.js";
 import { debounceResize, startAnimationLoop } from "@/util";
 import { scene, camera, axis, balls, resizeCamera } from "@/objects";
 
